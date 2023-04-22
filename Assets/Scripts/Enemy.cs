@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour, Damage
     [SerializeField] private bool playerInSights, playerInRange;
     [SerializeField] private LayerMask isPlayer;
     [SerializeField] private float attackSpeed;
+    [SerializeField] private float movementSpeed = 3.5f;
     private bool hasAttacked;
     [SerializeField] private Animator animator;
 
@@ -23,6 +24,7 @@ public class Enemy : MonoBehaviour, Damage
 
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player").transform;
+        agent.speed = movementSpeed;
     }
 
     // Update is called once per frame

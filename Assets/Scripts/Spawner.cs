@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Spawner : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Spawner : MonoBehaviour
     private float timer = 0f;
     private Vector3 spawnPoint;
     private float x;
+    private float movementSpeed = 3.5f;
+    private float increaseTimer = 5f;
 
     void Start()
     {   
@@ -19,6 +22,9 @@ public class Spawner : MonoBehaviour
 
     void Update()
     {
+        increaseTimer -= Time.deltaTime;
+        if((int)Time.timeSinceLevelLoad % 10 == 0 && increaseTimer <= 0f)
+            movementSpeed += movementSpeed/3;
         timer += Time.deltaTime;
         Spawn();    
     }
@@ -29,7 +35,8 @@ public class Spawner : MonoBehaviour
          {
              x = Random.Range(0, spawnRange);
              spawnPoint.x = x;
-             Instantiate(enemyPrefab, spawnPoint, Quaternion.identity);
+             GameObject enemy = Instantiate(enemyPrefab, spawnPoint, Quaternion.identity);
+             enemy.GetComponent<NavMeshAgent>().speed = movementSpeed;
              timer = 0;
          }
      }

@@ -16,7 +16,7 @@ public class PlayerFire : MonoBehaviour
     [SerializeField] private Animator animator;
     private float currentCharge  = 0f;
     private AudioSource audioSource;
-    [SerializeField] private AudioClip lightningCharge, lightningRelease;
+    [SerializeField] private AudioClip lightningCharge, lightningRelease, fireball;
     private bool canShoot;
     void Start()
     {
@@ -53,6 +53,7 @@ public class PlayerFire : MonoBehaviour
             if (currentCharge <= 0)
             {
                 audioSource.clip = lightningCharge;
+                audioSource.volume = 0.3f;
                 audioSource.Play();
             }
             currentCharge += Time.deltaTime;
@@ -75,6 +76,8 @@ public class PlayerFire : MonoBehaviour
     void Fireball()
     {
         animator.SetTrigger("Fire");
+        audioSource.volume = 0.6f;
+        audioSource.PlayOneShot(fireball);
         fireTimer = 0;
         Instantiate(bullet, firePos.position, Quaternion.identity);
     }
@@ -83,6 +86,7 @@ public class PlayerFire : MonoBehaviour
     {
         animator.SetBool("Charging", false);
         animator.SetBool("ChargeReady", false);
+        audioSource.volume = 0.3f;
         audioSource.PlayOneShot(lightningRelease);
         fireTimer = -fireDelay/2;
         currentCharge = 0;
