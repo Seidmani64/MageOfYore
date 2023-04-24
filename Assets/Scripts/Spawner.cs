@@ -17,14 +17,21 @@ public class Spawner : MonoBehaviour
     void Start()
     {   
         timer = 0f;
+        spawnPoint = transform.position;
         spawnPoint.x = 0;
     }
 
     void Update()
     {
         increaseTimer -= Time.deltaTime;
-        if((int)Time.timeSinceLevelLoad % 10 == 0 && increaseTimer <= 0f)
-            movementSpeed += movementSpeed/3;
+        Debug.Log((int)Time.timeSinceLevelLoad % 5);
+        Debug.Log(movementSpeed);
+        if((int)Time.timeSinceLevelLoad % 5 == 0 && increaseTimer <= 0f)
+        {
+            movementSpeed += movementSpeed*0.1f;
+            increaseTimer = 5f;
+        }
+            
         timer += Time.deltaTime;
         Spawn();    
     }
@@ -36,7 +43,7 @@ public class Spawner : MonoBehaviour
              x = Random.Range(0, spawnRange);
              spawnPoint.x = x;
              GameObject enemy = Instantiate(enemyPrefab, spawnPoint, Quaternion.identity);
-             enemy.GetComponent<NavMeshAgent>().speed = movementSpeed;
+             enemy.GetComponent<Enemy>().SetSpeed(movementSpeed);
              timer = 0;
          }
      }

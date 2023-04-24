@@ -92,15 +92,13 @@ public class PlayerFire : MonoBehaviour
         currentCharge = 0;
         mana -= 10;
         manaBar.SetMana(mana);
-        RaycastHit rayHit;
-        if(Physics.Raycast(firePos.position, Camera.main.transform.forward, out rayHit, Mathf.Infinity, enemyMask))
-        {
-            Debug.Log(rayHit.collider.gameObject.tag);
-            Enemy enemyHit = rayHit.collider.GetComponent<Enemy>();
+        RaycastHit[] rayHits;   
+        rayHits = Physics.RaycastAll(firePos.position, Camera.main.transform.forward, Mathf.Infinity, enemyMask);
+        for (int i = 0; i < rayHits.Length; i++) {
+            RaycastHit hit = rayHits[i];
+            Enemy enemyHit = hit.collider.GetComponent<Enemy>();
             if(enemyHit != null)
                 enemyHit.TakeDamage(3);
-            
-            Debug.Log("Did Hit");
         }
     }
 
