@@ -50,6 +50,6 @@ public class PlayerHealth : MonoBehaviour, Damage
     public void Die()
     {
         Debug.Log("You Died.");
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("Battle");
     }
 }
