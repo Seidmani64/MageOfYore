@@ -13,6 +13,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
     private bool isGrounded;
     [SerializeField] private float jumpHeight = 3f;
+    private float mass = 3.0f;
+    private Vector3 impact = Vector3.zero;
 
     private Vector2 GetInput()
     {
@@ -21,6 +23,12 @@ public class PlayerMove : MonoBehaviour
             Input.GetAxis("Vertical")
         );
         return input;
+    }
+
+    public void AddImpact(Vector3 dir, float force){
+        dir.Normalize();
+        if (dir.y < 0) dir.y = -dir.y; // reflect down force on the ground
+        impact += dir.normalized * force / mass;
     }
 
     void Start()
@@ -43,7 +51,13 @@ public class PlayerMove : MonoBehaviour
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, facing, transform.eulerAngles.z);
         Vector3 move = transform.right * input.x + transform.forward * input.y; 
 
-        controller.Move(move * speed * Time.deltaTime);
+        if (impact.magnitude > 0.2)
+            controller.Move((move*0.5f + impact) * speed * Time.deltaTime);
+        else
+            controller.Move(move * speed * Time.deltaTime);
+        impact = Vector3.Lerp(impact, Vector3.zero, 5*Time.deltaTime);
+
+        
 
         if(Input.GetButtonDown("Jump") && isGrounded)
         {

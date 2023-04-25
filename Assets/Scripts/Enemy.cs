@@ -6,21 +6,20 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour, Damage
 {
     [SerializeField] private float hp = 1f;
-    [SerializeField] private float maxIFrames = 1f;
     private NavMeshAgent agent;
     private Sprite originalSprite;
     private Transform player;
-    private float iFrames = 0f;
     [SerializeField] private float sightRange, attackRange;
     [SerializeField] private bool playerInSights, playerInRange;
     [SerializeField] private LayerMask isPlayer;
     [SerializeField] private float attackSpeed;
     private bool hasAttacked;
     [SerializeField] private Animator animator;
+    private float recoveryTime = 0f;
+    [SerializeField] private float maxRecoveryTime = 0.5f;
 
     void Start()
     {
-
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player").transform;
     }
@@ -28,10 +27,9 @@ public class Enemy : MonoBehaviour, Damage
     // Update is called once per frame
     void Update()
     {
-        iFrames -= Time.deltaTime;
-        if(iFrames <= 0f)
+        recoveryTime += Time.deltaTime;
+        if(recoveryTime >= maxRecoveryTime)
             animator.SetBool("Hurt", false);
-        
         playerInSights = Physics.CheckSphere(transform.position, sightRange, isPlayer);
         playerInRange = Physics.CheckSphere(transform.position, attackRange, isPlayer);
 
@@ -66,15 +64,14 @@ public class Enemy : MonoBehaviour, Damage
 
     void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.tag == "Bullet" && iFrames <= 0)
+        if(col.gameObject.tag == "Bullet")
             TakeDamage(1);
     }
 
     public void TakeDamage(int amount)
     {
-        Debug.Log("OOF");
-        //animator.SetBool("Hurt", true);
-        //iFrames = maxIFrames;
+        animator.SetBool("Hurt", true);
+        recoveryTime = 0f;
         hp -= amount;
         if(hp <= 0)
             Die();

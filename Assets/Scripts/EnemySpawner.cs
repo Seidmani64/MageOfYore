@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Spawner : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private int spawnRange = 10;
+    [SerializeField] private int spawnRange = 20;
     [SerializeField] private float spawnTime = 5f;
     private float timer = 0f;
     private Vector3 spawnPoint;
-    private float x;
+    private float x,z;
     private float movementSpeed = 3.5f;
+    private float speedIncrease = 3.5f*0.25f;
     private float increaseTimer = 5f;
 
     void Start()
@@ -24,11 +25,9 @@ public class Spawner : MonoBehaviour
     void Update()
     {
         increaseTimer -= Time.deltaTime;
-        Debug.Log((int)Time.timeSinceLevelLoad % 5);
-        Debug.Log(movementSpeed);
         if((int)Time.timeSinceLevelLoad % 5 == 0 && increaseTimer <= 0f)
         {
-            movementSpeed += movementSpeed*0.1f;
+            movementSpeed += speedIncrease;
             increaseTimer = 5f;
         }
             
@@ -40,8 +39,10 @@ public class Spawner : MonoBehaviour
      {
          if (timer >= spawnTime)
          {
-             x = Random.Range(0, spawnRange);
+             x = Random.Range(-spawnRange, spawnRange);
+             z = Random.Range(-spawnRange, spawnRange);
              spawnPoint.x = x;
+             spawnPoint.z = z;
              GameObject enemy = Instantiate(enemyPrefab, spawnPoint, Quaternion.identity);
              enemy.GetComponent<Enemy>().SetSpeed(movementSpeed);
              timer = 0;

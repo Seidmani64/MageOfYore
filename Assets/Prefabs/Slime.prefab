@@ -144,9 +144,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 3
-  maxIFrames: 1
   sightRange: 200
-  attackRange: 2
+  attackRange: 0
   playerInSights: 0
   playerInRange: 0
   isPlayer:
@@ -154,6 +153,7 @@ MonoBehaviour:
     m_Bits: 64
   attackSpeed: 3
   animator: {fileID: 5074516505296548141}
+  maxRecoveryTime: 0.5
 --- !u!195 &5074516505296548138
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ NavMeshAgent:
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 1.09
   m_BaseOffset: 0.545

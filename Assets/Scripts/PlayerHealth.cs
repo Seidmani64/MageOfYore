@@ -7,12 +7,14 @@ public class PlayerHealth : MonoBehaviour, Damage
 {
     [SerializeField] private int maxhp = 5;
     [SerializeField] private HealthBar healthBar;
+    private PlayerMove knockback;
     private int hp;
 
     void Start()
     {
         hp = maxhp;
         healthBar.SetMaxHealth(maxhp);
+        knockback = GetComponent<PlayerMove>();
     }
 
     public void OnTriggerEnter(Collider col)
@@ -20,7 +22,8 @@ public class PlayerHealth : MonoBehaviour, Damage
         if(col.gameObject.tag == "Enemy")
         {
             TakeDamage(1);
-            Debug.Log("Ouch!");
+            Vector3 knockbackDir = transform.position - col.gameObject.transform.position;
+            knockback.AddImpact(knockbackDir, 15f);
         }
             
     }
@@ -28,7 +31,12 @@ public class PlayerHealth : MonoBehaviour, Damage
     public void OnCollisionEnter(Collision col)
     {
         if(col.gameObject.tag == "Enemy")
+        {
             TakeDamage(1);
+            Vector3 knockbackDir = transform.position - col.gameObject.transform.position;
+            knockback.AddImpact(knockbackDir, 15f);
+        }
+            
     }
     
     public void TakeDamage(int amount)
