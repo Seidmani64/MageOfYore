@@ -86,6 +86,7 @@ public class Enemy : MonoBehaviour, Damage
     public void Die()
     {
         Destroy(gameObject);
+        BattleCheck.instance.CheckForEnemies();
         ScoreManager.instance.AddScore(1);    
     }
 }

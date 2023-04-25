@@ -18,7 +18,15 @@ public class BushSpawner : MonoBehaviour
         for(int i = 0; i < bushes; i++)
         {
             x = Random.Range(-spawnRange, spawnRange);
+            if(x >= 0f && x <= 4f)
+                x += 4f;
+            else if(x <= 0f && x >= -4f)
+                x -= 4f;
             z = Random.Range(-spawnRange, spawnRange);
+            if(z >= 0f && z <= 4f)
+                z += 4f;
+            else if(z <= 0f && z >= -4f)
+                z -= 4f;
             spawnPoint.x = x;
             spawnPoint.z = z;
             Instantiate(bushPrefab, spawnPoint, Quaternion.identity);

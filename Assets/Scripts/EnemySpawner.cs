@@ -7,23 +7,22 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private int spawnRange = 20;
-    [SerializeField] private float spawnTime = 5f;
-    private float timer = 0f;
     private Vector3 spawnPoint;
     private float x,z;
-    private float movementSpeed = 3.5f;
-    private float speedIncrease = 3.5f*0.25f;
-    private float increaseTimer = 5f;
+    private int enemyAmount = 1;
 
     void Start()
     {   
-        timer = 0f;
         spawnPoint = transform.position;
         spawnPoint.x = 0;
+        enemyAmount = Random.Range(1,4);
+        for(int i = 0; i < enemyAmount; i++)
+            Spawn();   
     }
 
     void Update()
     {
+        /*
         increaseTimer -= Time.deltaTime;
         if((int)Time.timeSinceLevelLoad % 5 == 0 && increaseTimer <= 0f)
         {
@@ -32,20 +31,23 @@ public class EnemySpawner : MonoBehaviour
         }
             
         timer += Time.deltaTime;
-        Spawn();    
+        */ 
     }
 
     void Spawn()
      {
-         if (timer >= spawnTime)
-         {
-             x = Random.Range(-spawnRange, spawnRange);
-             z = Random.Range(-spawnRange, spawnRange);
-             spawnPoint.x = x;
-             spawnPoint.z = z;
-             GameObject enemy = Instantiate(enemyPrefab, spawnPoint, Quaternion.identity);
-             enemy.GetComponent<Enemy>().SetSpeed(movementSpeed);
-             timer = 0;
-         }
+        x = Random.Range(-spawnRange, spawnRange);
+        if(x >= 0f && x <= 4f)
+            x += 4f;
+        else if(x <= 0f && x >= -4f)
+            x -= 4f;
+        z = Random.Range(-spawnRange, spawnRange);
+        if(z >= 0f && z <= 4f)
+            z += 4f;
+        else if(z <= 0f && z >= -4f)
+            z -= 4f;
+        spawnPoint.x = x;
+        spawnPoint.z = z;
+        GameObject enemy = Instantiate(enemyPrefab, spawnPoint, Quaternion.identity);
      }
 }
