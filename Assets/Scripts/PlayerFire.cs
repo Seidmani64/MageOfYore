@@ -18,12 +18,14 @@ public class PlayerFire : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField] private AudioClip lightningCharge, lightningRelease, fireball;
     private bool canShoot;
+    private int level;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         mana = PlayerPrefs.GetInt("mana", maxmana);
         manaBar.SetMaxMana(maxmana);
         manaBar.SetMana(mana);
+        level = PlayerPrefs.GetInt("level", 1);
 
     }
 
@@ -48,7 +50,7 @@ public class PlayerFire : MonoBehaviour
         {
             Lightning();
         }
-        else if(canShoot && Input.GetMouseButton(1) && mana >= 10)
+        else if(canShoot && Input.GetMouseButton(1) && mana >= 10 && level >= 3)
         {
             animator.SetBool("Charging", true);
             if (currentCharge <= 0)

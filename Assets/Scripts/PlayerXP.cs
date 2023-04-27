@@ -19,6 +19,18 @@ public class PlayerXP : MonoBehaviour
         instance = this;
     }
 
+    void Update()
+    {
+        if(Input.GetKeyDown("t"))
+        {
+            exp = 0;
+            PlayerPrefs.SetInt("exp", exp);
+            level = 1;
+            PlayerPrefs.SetInt("level", level);
+            ExpManager.instance.UpdateLevel();
+        }
+    }
+
     public void AddXP(int amount)
     {
         exp += amount;
@@ -27,7 +39,6 @@ public class PlayerXP : MonoBehaviour
         if(level > PlayerPrefs.GetInt("level", 1))
         {
             ExpManager.instance.UpdateLevel();
-            Debug.Log("Level Up!");
             PlayerPrefs.SetInt("level", level);
         }
         
