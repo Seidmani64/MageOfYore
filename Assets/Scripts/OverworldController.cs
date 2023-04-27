@@ -18,6 +18,9 @@ public class OverworldController : MonoBehaviour
 
     void Start()
     {
+        float xInitialPos = PlayerPrefs.GetFloat("X start", 0.5f);
+        float zInitialPos = PlayerPrefs.GetFloat("Z start", 0.5f);
+        transform.position = new Vector3(xInitialPos, 0, zInitialPos);
         goal = transform.position;
         randEncounter = 0f;
         steps = 0;
@@ -25,7 +28,6 @@ public class OverworldController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Steps at: " + steps);
         moving = (goal != transform.position);
 
         if(moving)
@@ -50,12 +52,12 @@ public class OverworldController : MonoBehaviour
         if(hInput != 0 || vInput != 0)
             {
                 randEncounter = Random.Range(0f, 1f);
-                Debug.Log(randEncounter);
-                Debug.Log(steps);
                 if(randEncounter < (0.01f + steps/200)) 
                 {
                     randEncounter = 0;
                     steps = 0;
+                    PlayerPrefs.SetFloat("X start", transform.position.x);
+                    PlayerPrefs.SetFloat("Z start", transform.position.z);
                     SceneManager.LoadScene("Battle");
                 }
                 steps++; 

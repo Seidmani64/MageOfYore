@@ -14,14 +14,19 @@ public class PlayerHealth : MonoBehaviour, Damage
 
     void Start()
     {
-        hp = maxhp;
+        hp = PlayerPrefs.GetInt("hp", maxhp);
         healthBar.SetMaxHealth(maxhp);
+        healthBar.SetHealth(hp);
         knockback = GetComponent<PlayerMove>();
     }
 
     void Update()
     {
         currentIFrames -= Time.deltaTime;
+        if(Input.GetKeyDown("r"))
+        {
+            SetHealth(5);
+        }
     }
 
     public void OnTriggerEnter(Collider col)
@@ -61,6 +66,7 @@ public class PlayerHealth : MonoBehaviour, Damage
     {
         currentIFrames = iFrames;
         hp -= amount;
+        PlayerPrefs.SetInt("hp", hp);
         healthBar.SetHealth(hp);
         if(hp <= 0)
             Die();
@@ -68,7 +74,14 @@ public class PlayerHealth : MonoBehaviour, Damage
 
     public void Die()
     {
-        Debug.Log("You Died.");
-            SceneManager.LoadScene("Battle");
+        hp = maxhp;
+        PlayerPrefs.SetInt("hp",hp);
+        SceneManager.LoadScene("Battle");
+    }
+
+    public void SetHealth(int amount)
+    {
+        hp = amount;
+        healthBar.SetMaxHealth(hp);
     }
 }

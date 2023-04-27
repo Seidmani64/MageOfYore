@@ -21,8 +21,9 @@ public class PlayerFire : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        mana = maxmana;
-        manaBar.SetMaxMana(mana);
+        mana = PlayerPrefs.GetInt("mana", maxmana);
+        manaBar.SetMaxMana(maxmana);
+        manaBar.SetMana(mana);
 
     }
 
@@ -91,6 +92,7 @@ public class PlayerFire : MonoBehaviour
         fireTimer = -fireDelay/2;
         currentCharge = 0;
         mana -= 10;
+        PlayerPrefs.SetInt("mana", mana);
         manaBar.SetMana(mana);
         RaycastHit[] rayHits;   
         rayHits = Physics.RaycastAll(firePos.position, Camera.main.transform.forward, Mathf.Infinity, enemyMask);
@@ -107,5 +109,6 @@ public class PlayerFire : MonoBehaviour
         if(mana <= maxmana)
             mana += 1;
         manaBar.SetMana(mana);
+        PlayerPrefs.SetInt("mana", mana);
     }
 }

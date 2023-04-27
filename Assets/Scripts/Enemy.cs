@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour, Damage
     public void Die()
     {
         Destroy(gameObject);
-        EnemySpawner.instance.EnemiesCheck();
-        ScoreManager.instance.AddScore(1);    
+        PlayerXP.instance.AddXP(1);
+        EnemySpawner.instance.EnemiesCheck(); 
     }
 }
