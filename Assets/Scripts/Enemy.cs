@@ -17,11 +17,13 @@ public class Enemy : MonoBehaviour, Damage
     [SerializeField] private Animator animator;
     private float recoveryTime = 0f;
     [SerializeField] private float maxRecoveryTime = 0.5f;
+    public static int numEnemies = 0;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player").transform;
+        numEnemies++;
     }
 
     // Update is called once per frame
@@ -86,7 +88,7 @@ public class Enemy : MonoBehaviour, Damage
     public void Die()
     {
         Destroy(gameObject);
-        BattleCheck.instance.CheckForEnemies();
+        EnemySpawner.instance.EnemiesCheck();
         ScoreManager.instance.AddScore(1);    
     }
 }

@@ -2,36 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner instance;
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private int spawnRange = 20;
     private Vector3 spawnPoint;
     private float x,z;
-    private int enemyAmount = 1;
+    public int numEnemies = 1;
+
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {   
         spawnPoint = transform.position;
         spawnPoint.x = 0;
-        enemyAmount = Random.Range(1,4);
-        for(int i = 0; i < enemyAmount; i++)
+        numEnemies = Random.Range(1,4);
+        for(int i = 0; i < numEnemies; i++)
             Spawn();   
     }
 
-    void Update()
+    public void EnemiesCheck()
     {
-        /*
-        increaseTimer -= Time.deltaTime;
-        if((int)Time.timeSinceLevelLoad % 5 == 0 && increaseTimer <= 0f)
-        {
-            movementSpeed += speedIncrease;
-            increaseTimer = 5f;
-        }
-            
-        timer += Time.deltaTime;
-        */ 
+        numEnemies--;
+        if(numEnemies <= 0)
+            SceneManager.LoadScene("Overworld");
     }
 
     void Spawn()
