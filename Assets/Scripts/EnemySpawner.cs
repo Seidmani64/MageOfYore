@@ -29,8 +29,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void EnemiesCheck()
     {
-        numEnemies--;
-        if(numEnemies <= 0)
+        if(numEnemies <= 0 && !ExpManager.instance.levellingUp)
             SceneManager.LoadScene("Overworld");
     }
 

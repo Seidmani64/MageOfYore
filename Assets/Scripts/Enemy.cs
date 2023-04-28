@@ -89,6 +89,7 @@ public class Enemy : MonoBehaviour, Damage
     {
         Destroy(gameObject);
         PlayerXP.instance.AddXP(1);
+        EnemySpawner.instance.numEnemies--;
         EnemySpawner.instance.EnemiesCheck(); 
     }
 }

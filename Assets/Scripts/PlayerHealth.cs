@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour, Damage
 {
-    [SerializeField] private int maxhp = 5;
+    [SerializeField] private int maxHp = 5;
     [SerializeField] private HealthBar healthBar;
     private PlayerMove knockback;
     private int hp;
@@ -14,8 +14,9 @@ public class PlayerHealth : MonoBehaviour, Damage
 
     void Start()
     {
-        hp = PlayerPrefs.GetInt("hp", maxhp);
-        healthBar.SetMaxHealth(maxhp);
+        hp = PlayerPrefs.GetInt("hp", maxHp);
+        maxHp = PlayerPrefs.GetInt("maxHp", maxHp);
+        healthBar.SetMaxHealth(maxHp);
         healthBar.SetHealth(hp);
         knockback = GetComponent<PlayerMove>();
     }
@@ -74,7 +75,7 @@ public class PlayerHealth : MonoBehaviour, Damage
 
     public void Die()
     {
-        hp = maxhp;
+        hp = maxHp;
         PlayerPrefs.SetInt("hp",hp);
         SceneManager.LoadScene("Battle");
     }

@@ -27,7 +27,6 @@ public class PlayerXP : MonoBehaviour
             PlayerPrefs.SetInt("exp", exp);
             level = 1;
             PlayerPrefs.SetInt("level", level);
-            ExpManager.instance.UpdateLevel();
         }
     }
 
@@ -38,7 +37,7 @@ public class PlayerXP : MonoBehaviour
         level = (int)Mathf.Floor((exp+5)/5); 
         if(level > PlayerPrefs.GetInt("level", 1))
         {
-            ExpManager.instance.UpdateLevel();
+            ExpManager.instance.LevelUp();
             PlayerPrefs.SetInt("level", level);
         }
         

@@ -7,7 +7,7 @@ public class PlayerFire : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private float fireDelay;
     [SerializeField] private Transform firePos;
-    [SerializeField] private int maxmana = 20;
+    [SerializeField] private int maxMana = 20;
     private float fireTimer = 0f;
     private int mana;
     [SerializeField] private ManaBar manaBar;
@@ -22,8 +22,9 @@ public class PlayerFire : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        mana = PlayerPrefs.GetInt("mana", maxmana);
-        manaBar.SetMaxMana(maxmana);
+        mana = PlayerPrefs.GetInt("mana", maxMana);
+        maxMana = PlayerPrefs.GetInt("maxMana", maxMana);
+        manaBar.SetMaxMana(maxMana);
         manaBar.SetMana(mana);
         level = PlayerPrefs.GetInt("level", 1);
 
@@ -108,7 +109,7 @@ public class PlayerFire : MonoBehaviour
 
     public void GainMana()
     {
-        if(mana <= maxmana)
+        if(mana <= maxMana)
             mana += 1;
         manaBar.SetMana(mana);
         PlayerPrefs.SetInt("mana", mana);
