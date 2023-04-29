@@ -617,7 +617,7 @@ MonoBehaviour:
   bullet: {fileID: 5921101696558146371, guid: 757b249c49c672248a9236d71e906a16, type: 3}
   fireDelay: 0.65
   firePos: {fileID: 545504621}
-  maxmana: 20
+  maxMana: 20
   manaBar: {fileID: 163990049}
   enemyMask:
     serializedVersion: 2
@@ -639,7 +639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 059edda105f8354489033ef367470332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhp: 5
+  maxHp: 5
   healthBar: {fileID: 1477821401}
 --- !u!82 &268142084
 AudioSource:
@@ -1598,10 +1598,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expUI: {fileID: 286679581}
+  lvlText: {fileID: 1186040555}
   HUD: {fileID: 189770401}
   LevelUpUI: {fileID: 582658592}
   healthBar: {fileID: 1477821401}
   manaBar: {fileID: 163990049}
+  victorySong: {fileID: 8300000, guid: 86fc86e81519d2043af581c8a2f8866d, type: 3}
+  audioManager: {fileID: 555662323}
   exp: 0
   level: 1
   levellingUp: 0

@@ -8,10 +8,13 @@ public class ExpManager : MonoBehaviour
 {
     public static ExpManager instance; 
     public TextMeshProUGUI expUI;
+    public TextMeshProUGUI lvlText;
     [SerializeField] private GameObject HUD;
     [SerializeField] private GameObject LevelUpUI;
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private ManaBar manaBar;
+    [SerializeField] private AudioClip victorySong;
+    [SerializeField] private AudioSource audioManager;
     public int exp = 0;
     public int level = 1;
     public bool levellingUp = false;
@@ -30,7 +33,8 @@ public class ExpManager : MonoBehaviour
 
     public void LevelUp()
     {
-        levellingUp = true;
+        audioManager.clip = victorySong;
+        audioManager.Play();
         Cursor.lockState = CursorLockMode.Confined;
         exp = PlayerPrefs.GetInt("exp", 0);   
         level = (int)Mathf.Floor((exp+5)/5); 
@@ -38,7 +42,7 @@ public class ExpManager : MonoBehaviour
         Time.timeScale = 0;
         HUD.SetActive(false);
         LevelUpUI.SetActive(true);
-        
+        lvlText.text = "YOU HAVE REACHED LEVEL " + level.ToString();
     }
 
     public void HealthUp()

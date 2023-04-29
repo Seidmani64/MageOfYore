@@ -35,6 +35,10 @@ public class OverworldController : MonoBehaviour
         else
             SetNewGoal();
 
+        if(Input.GetKeyDown("t"))
+        {
+            PlayerPrefs.DeleteAll();
+        }
 
     }
 
