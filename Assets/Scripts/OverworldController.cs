@@ -12,12 +12,14 @@ public class OverworldController : MonoBehaviour
     private bool moving = false;
     [SerializeField] private LayerMask wallLM;
     private float randEncounter = 0f;
+    private DialogueManager dialogueManager;
 
     private int steps = 0;
 
 
     void Start()
     {
+        dialogueManager = FindObjectOfType<DialogueManager>();
         float xInitialPos = PlayerPrefs.GetFloat("X start", 0.5f);
         float zInitialPos = PlayerPrefs.GetFloat("Z start", 0.5f);
         transform.position = new Vector3(xInitialPos, 0, zInitialPos);
@@ -30,7 +32,12 @@ public class OverworldController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
             PauseManager.instance.MenuCheck();
-        if(PauseManager.instance.paused)
+        if(Input.GetKeyDown("z"))
+            if(dialogueManager.inConversation)
+                dialogueManager.DisplayNextSentence();
+            else
+                Interact();
+        if(PauseManager.instance.paused || dialogueManager.inConversation)
             return;
         moving = (goal != transform.position);
 
@@ -87,6 +94,17 @@ public class OverworldController : MonoBehaviour
         {
             transform.LookAt(goal);
             goal = transform.position;
+        }
+    }
+
+    private void Interact()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 1f, wallLM))
+        {
+            DialogueTrigger interactable = hit.collider.gameObject.GetComponent<DialogueTrigger>();
+            if(interactable != null)
+                interactable.TriggerDialogue();
         }
     }
 

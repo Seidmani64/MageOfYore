@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -12,7 +13,10 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
     public GameObject dialogueBox;
     private bool midSentence = false;
+    public bool inConversation = false;
+    private bool hasInteraction;
     private string currentSentence;
+    public GameObject continueButton;
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +26,14 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        var eventSystem = EventSystem.current;  
+        eventSystem.SetSelectedGameObject(continueButton, new BaseEventData(eventSystem));
+        Cursor.lockState = CursorLockMode.Confined;
+        inConversation = true;
         dialogueBox.SetActive(true);
         nameText.text = dialogue.name;
         sentences.Clear();
+        hasInteraction = dialogue.hasInteraction;
 
         foreach(string sentence in dialogue.sentences)
         {
@@ -71,7 +80,15 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
-        dialogueBox.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        if(hasInteraction)
+            Debug.Log("BEGIN EVENT...");
+        else
+        {
+            inConversation = false;
+            dialogueBox.SetActive(false);
+        }
+        
     }
 
 }
