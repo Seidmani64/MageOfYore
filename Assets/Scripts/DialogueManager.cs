@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class DialogueManager : MonoBehaviour
     private bool hasInteraction;
     private string currentSentence;
     public GameObject continueButton;
+    private Dialogue dialogue;
 
     // Start is called before the first frame update
     void Start()
@@ -24,8 +26,9 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(Dialogue _dialogue)
     {
+        dialogue = _dialogue;
         var eventSystem = EventSystem.current;  
         eventSystem.SetSelectedGameObject(continueButton, new BaseEventData(eventSystem));
         Cursor.lockState = CursorLockMode.Confined;
@@ -82,13 +85,29 @@ public class DialogueManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         if(hasInteraction)
-            Debug.Log("BEGIN EVENT...");
+            TriggerInteraction(dialogue.interaction);
         else
         {
             inConversation = false;
             dialogueBox.SetActive(false);
         }
         
+    }
+
+    void TriggerInteraction(Interaction interaction)
+    {
+        GameObject obstacleParent = interaction.obstacle.transform.root.gameObject;
+        Debug.Log("Parent is: " + obstacleParent.name);
+        Animator[] animators = obstacleParent.GetComponentsInChildren<Animator>();
+        foreach(Animator animator in animators)
+        {
+            animator.SetTrigger("Activate");
+        }
+        if(obstacleParent.transform.Find("Obstacle") != null)
+        {
+            obstacleParent.transform.Find("Obstacle").gameObject.SetActive(false);
+            PlayerPrefs.SetInt(interaction.obstacleName, 0);
+        }
     }
 
 }

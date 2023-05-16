@@ -10,4 +10,6 @@ public class Dialogue
     [TextArea(3, 10)]
     public string[] sentences;
     public bool hasInteraction;
+    public int levelRequirement = 1;
+    public Interaction interaction;
 }

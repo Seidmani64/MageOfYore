@@ -10737,12 +10737,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1287333225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3965213, y: 0, z: 0.022896526}
-  m_LocalScale: {x: 0.2, y: 1, z: 0.83333325}
+  m_LocalPosition: {x: -0.98194236, y: -0.14802623, z: 0.5547385}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 581340272}
-  m_Father: {fileID: 1904020826}
+  m_Father: {fileID: 1468257967}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1388284144
@@ -10939,6 +10939,73 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458113978}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1468257966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1468257967}
+  m_Layer: 0
+  m_Name: LightningWall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1468257967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468257966}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2022615054}
+  - {fileID: 1287333227}
+  - {fileID: 1545945131}
+  m_Father: {fileID: 1745625686}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1545945130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1545945131}
+  m_Layer: 0
+  m_Name: Obstacle
+  m_TagString: Obstacle
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1545945131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545945130}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1904020826}
+  - {fileID: 1855937550}
+  m_Father: {fileID: 1468257967}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1629149061
 GameObject:
   m_ObjectHideFlags: 0
@@ -11135,7 +11202,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1904020826}
+  - {fileID: 1468257967}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11163,13 +11230,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855937549}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.020732844, y: 0, z: 0.12894788}
-  m_LocalScale: {x: 0.52, y: 1, z: 1.2499999}
+  m_LocalPosition: {x: 0.897, y: -0.14802623, z: 0.68200016}
+  m_LocalScale: {x: 2.6, y: 1, z: 1.4999999}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 42076070}
-  m_Father: {fileID: 1904020826}
-  m_RootOrder: 2
+  m_Father: {fileID: 1545945131}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1904020825
 GameObject:
@@ -11184,9 +11251,8 @@ GameObject:
   - component: {fileID: 1904020828}
   - component: {fileID: 1904020827}
   - component: {fileID: 1904020830}
-  - component: {fileID: 1904020831}
   m_Layer: 8
-  m_Name: LightningWall
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11203,11 +11269,8 @@ Transform:
   m_LocalPosition: {x: 1.0006642, y: -0.14802623, z: 0.5272627}
   m_LocalScale: {x: 5, y: 1, z: 1.2}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2022615054}
-  - {fileID: 1287333227}
-  - {fileID: 1855937550}
-  m_Father: {fileID: 1745625686}
+  m_Children: []
+  m_Father: {fileID: 1545945131}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1904020827
@@ -11292,29 +11355,22 @@ MonoBehaviour:
     - If I knew how to cast a lightning bolt I could overload the orbs containing
       the magic and clear the way!
     hasInteraction: 0
+    levelRequirement: 1
+    interaction:
+      obstacle: {fileID: 0}
+      obstacleName: 
+      battle: 
   lockedDialogue:
     name: Mage
     sentences:
     - With my lightning magic, I can finally overload the magical orbs and get past
       this electrified fence!
-    hasInteraction: 0
-  levelRequirement: 3
---- !u!114 &1904020831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1904020825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a032ea72bca56f14a85cc416cfd1c28f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interaction:
-    obstacle: {fileID: 1904020825}
-    obstacleName: LightningWall
-    battle: Battle
+    hasInteraction: 1
+    levelRequirement: 3
+    interaction:
+      obstacle: {fileID: 1904020825}
+      obstacleName: LightningWall
+      battle: 
 --- !u!1 &1904471156
 GameObject:
   m_ObjectHideFlags: 0
@@ -11640,12 +11696,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2022615053}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4034787, y: 0, z: 0.022896526}
-  m_LocalScale: {x: 0.2, y: 1, z: 0.83333325}
+  m_LocalPosition: {x: 3.0180578, y: -0.14802623, z: 0.5547385}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 272380435}
-  m_Father: {fileID: 1904020826}
+  m_Father: {fileID: 1468257967}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2026861931
