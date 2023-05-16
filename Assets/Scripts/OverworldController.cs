@@ -28,6 +28,10 @@ public class OverworldController : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+            PauseManager.instance.MenuCheck();
+        if(PauseManager.instance.paused)
+            return;
         moving = (goal != transform.position);
 
         if(moving)

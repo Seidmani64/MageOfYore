@@ -39,6 +39,10 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+            PauseManager.instance.MenuCheck();
+        if(PauseManager.instance.paused)
+            return;
         isGrounded = Physics.CheckSphere(groundCheck.position,groundDistance, groundMask);
         
         if(isGrounded && velocity.y < 0)

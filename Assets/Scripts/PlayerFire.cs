@@ -33,6 +33,8 @@ public class PlayerFire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(PauseManager.instance.paused)
+            return;
         fireTimer += Time.deltaTime;
         if(fireTimer >= fireDelay)
         {

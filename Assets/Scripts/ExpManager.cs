@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class ExpManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class ExpManager : MonoBehaviour
     [SerializeField] private ManaBar manaBar;
     [SerializeField] private AudioClip victorySong;
     [SerializeField] private AudioSource audioManager;
+    [SerializeField] private GameObject healthUpButton;
     public int exp = 0;
     public int level = 1;
     public bool levellingUp = false;
@@ -33,6 +35,8 @@ public class ExpManager : MonoBehaviour
 
     public void LevelUp()
     {
+        var eventSystem = EventSystem.current;  
+        eventSystem.SetSelectedGameObject(healthUpButton, new BaseEventData(eventSystem));
         audioManager.clip = victorySong;
         audioManager.Play();
         Cursor.lockState = CursorLockMode.Confined;
