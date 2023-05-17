@@ -77,7 +77,8 @@ public class PlayerHealth : MonoBehaviour, Damage
     {
         hp = maxHp;
         PlayerPrefs.SetInt("hp",hp);
-        SceneManager.LoadScene("Battle");
+        PlayerPrefs.SetInt("mana",0);
+        SceneManager.LoadScene("Overworld");
     }
 
     public void SetHealth(int amount)
