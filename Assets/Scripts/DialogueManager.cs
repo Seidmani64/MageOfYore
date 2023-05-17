@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -97,7 +96,6 @@ public class DialogueManager : MonoBehaviour
     void TriggerInteraction(Interaction interaction)
     {
         GameObject obstacleParent = interaction.obstacle.transform.root.gameObject;
-        Debug.Log("Parent is: " + obstacleParent.name);
         Animator[] animators = obstacleParent.GetComponentsInChildren<Animator>();
         foreach(Animator animator in animators)
         {
@@ -108,6 +106,7 @@ public class DialogueManager : MonoBehaviour
             obstacleParent.transform.Find("Obstacle").gameObject.SetActive(false);
             PlayerPrefs.SetInt(interaction.obstacleName, 0);
         }
+        dialogueBox.SetActive(false);
     }
 
 }

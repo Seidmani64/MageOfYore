@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
 public class Enemy : MonoBehaviour, Damage
 {
-    [SerializeField] private float hp = 1f;
-    private NavMeshAgent agent;
-    private Sprite originalSprite;
-    private Transform player;
-    [SerializeField] private float sightRange, attackRange;
-    [SerializeField] private bool playerInSights, playerInRange;
-    [SerializeField] private LayerMask isPlayer;
-    [SerializeField] private float attackSpeed;
-    private bool hasAttacked;
-    [SerializeField] private Animator animator;
-    private float recoveryTime = 0f;
-    [SerializeField] private float maxRecoveryTime = 0.5f;
+    [SerializeField] public float hp = 1f;
+    public NavMeshAgent agent;
+    public Transform player;
+    [SerializeField] public float sightRange, attackRange;
+    [SerializeField] public bool playerInSights, playerInRange;
+    [SerializeField] public LayerMask isPlayer;
+    [SerializeField] public float attackSpeed;
+    public bool hasAttacked;
+    [SerializeField] public Animator animator;
+    public float recoveryTime = 0f;
+    [SerializeField] public float maxRecoveryTime = 0.5f;
     public static int numEnemies = 0;
 
     void Start()
@@ -85,7 +85,7 @@ public class Enemy : MonoBehaviour, Damage
         agent.speed = amount;
     }
 
-    public void Die()
+    public virtual void Die()
     {
         Destroy(gameObject);
         PlayerXP.instance.AddXP(1);
