@@ -43,6 +43,7 @@ public class Enemy : MonoBehaviour, Damage
 
     public virtual void Chasing()
     {
+        Debug.Log("Chasing!");
         agent.SetDestination(player.position);
     }
 
