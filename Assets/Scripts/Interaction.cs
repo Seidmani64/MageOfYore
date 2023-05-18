@@ -8,6 +8,7 @@ public class Interaction
 {
     public GameObject obstacle;
     public string obstacleName;
-    public string battle;
+    public GameObject newObject;
+    
 
 }

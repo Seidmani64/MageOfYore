@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5074516505250769246}
   - component: {fileID: 5074516505296548138}
   - component: {fileID: 5074516505296548141}
+  - component: {fileID: 7901086596688429609}
   m_Layer: 7
   m_Name: Slime
   m_TagString: Enemy
@@ -144,6 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 3
+  agent: {fileID: 0}
+  player: {fileID: 0}
   sightRange: 200
   attackRange: 0
   playerInSights: 0
@@ -152,8 +155,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   attackSpeed: 3
+  hasAttacked: 0
   animator: {fileID: 5074516505296548141}
+  recoveryTime: 0
   maxRecoveryTime: 0.5
+  flash: {fileID: 7901086596688429609}
 --- !u!195 &5074516505296548138
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -196,3 +202,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7901086596688429609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5074516505250769240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88170d7d5d0ed0546ad6d44551c30c61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 5ffeb15394ca9864584b28a053ff7b16, type: 2}
+  duration: 0.125

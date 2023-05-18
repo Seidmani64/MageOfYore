@@ -12,6 +12,7 @@ public class EnemySpawner : MonoBehaviour
     private Vector3 spawnPoint;
     private float x,z;
     public int numEnemies = 1;
+    public bool isBoss = false;
 
     void Awake()
     {
@@ -20,11 +21,19 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {   
-        spawnPoint = transform.position;
-        spawnPoint.x = 0;
-        numEnemies = Random.Range(1,4);
-        for(int i = 0; i < numEnemies; i++)
-            Spawn();   
+        if(isBoss)
+        {
+            SpawnBoss();
+        }
+        else
+        {
+            spawnPoint = transform.position;
+            spawnPoint.x = 0;
+            numEnemies = Random.Range(1,4);
+            for(int i = 0; i < numEnemies; i++)
+                Spawn();   
+        }
+
     }
 
     public void EnemiesCheck()
@@ -55,5 +64,10 @@ public class EnemySpawner : MonoBehaviour
         spawnPoint.x = x;
         spawnPoint.z = z;
         GameObject enemy = Instantiate(enemyPrefab, spawnPoint, Quaternion.identity);
+     }
+
+     void SpawnBoss()
+     {
+        GameObject enemy = Instantiate(enemyPrefab, Vector3.zero, Quaternion.identity);
      }
 }

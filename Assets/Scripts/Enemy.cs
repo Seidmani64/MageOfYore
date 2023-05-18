@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour, Damage
     public float recoveryTime = 0f;
     [SerializeField] public float maxRecoveryTime = 0.5f;
     public static int numEnemies = 0;
+    [SerializeField] private FlashEffect flash;
 
     void Start()
     {
@@ -72,6 +73,7 @@ public class Enemy : MonoBehaviour, Damage
 
     public void TakeDamage(int amount)
     {
+        flash.Flash();
         animator.SetBool("Hurt", true);
         recoveryTime = 0f;
         hp -= amount;

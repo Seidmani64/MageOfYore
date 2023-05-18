@@ -42,7 +42,10 @@ public class SlimeBoss : Enemy
 
     public override void Die()
     {
-        Debug.Log("Owie");
+        Destroy(gameObject);
+        PlayerXP.instance.AddXP(5);
+        EnemySpawner.instance.numEnemies--;
+        EnemySpawner.instance.EnemiesCheck(); 
     }
 }
 

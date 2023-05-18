@@ -242,27 +242,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: Lightning Wall
-    sentences:
-    - Oh you have smitten me, you fiend!
-    - I will haunt you from beyond the grave...
-    hasInteraction: 0
+    name: 
+    sentences: []
+    hasInteraction: 1
     levelRequirement: 1
     interaction:
       obstacle: {fileID: 0}
       obstacleName: 
-      battle: 
+      newObject: {fileID: 1012572619}
+  hasLockedDialogue: 0
   lockedDialogue:
-    name: Lightning Wall
-    sentences:
-    - Oh you have smitten me, you fiend!
-    - I will haunt you from beyond the grave...
-    hasInteraction: 0
+    name: 
+    sentences: []
+    hasInteraction: 1
     levelRequirement: 1
     interaction:
       obstacle: {fileID: 0}
       obstacleName: 
-      battle: 
+      newObject: {fileID: 1012572619}
 --- !u!1 &80285807
 GameObject:
   m_ObjectHideFlags: 0
@@ -1398,8 +1395,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 647046130}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.35}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1012572620}
@@ -10597,7 +10594,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1012572619}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.37, y: -0.14802623, z: -0.021}
+  m_LocalPosition: {x: 1, y: -0.14802623, z: 0.98}
   m_LocalScale: {x: 0.75, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10617,6 +10614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b177947041b6d4d4bb0fc0adf0d37b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 647046132}
 --- !u!1 &1169731433
 GameObject:
   m_ObjectHideFlags: 0
@@ -11545,7 +11543,8 @@ MonoBehaviour:
     interaction:
       obstacle: {fileID: 0}
       obstacleName: 
-      battle: 
+      newObject: {fileID: 0}
+  hasLockedDialogue: 1
   lockedDialogue:
     name: Mage
     sentences:
@@ -11554,9 +11553,9 @@ MonoBehaviour:
     hasInteraction: 1
     levelRequirement: 3
     interaction:
-      obstacle: {fileID: 1904020825}
+      obstacle: {fileID: 1545945130}
       obstacleName: LightningWall
-      battle: 
+      newObject: {fileID: 0}
 --- !u!1 &1904471156
 GameObject:
   m_ObjectHideFlags: 0

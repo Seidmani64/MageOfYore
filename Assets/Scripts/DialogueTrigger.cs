@@ -6,21 +6,21 @@ using UnityEngine.SceneManagement;
 public class DialogueTrigger : MonoBehaviour
 {
     public Dialogue dialogue;
+    public bool hasLockedDialogue = false;
     public Dialogue lockedDialogue;
 
     public void TriggerDialogue()
     {
-        Debug.Log("Enter triggerdialogue with dialogue from: " + dialogue.name);
-        if(PlayerPrefs.GetInt("level",1) >= dialogue.levelRequirement)
+        if(PlayerPrefs.GetInt("level",1) >= lockedDialogue.levelRequirement && hasLockedDialogue)
             FindObjectOfType<DialogueManager>().StartDialogue(lockedDialogue);
         else
             FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
         
     }
 
-    void LoadBattle()
+    public void EndInteraction()
     {
-        SceneManager.LoadScene(dialogue.interaction.battle);
+        FindObjectOfType<DialogueManager>().inConversation = false;
     }
 
 }

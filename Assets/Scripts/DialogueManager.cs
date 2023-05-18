@@ -95,18 +95,23 @@ public class DialogueManager : MonoBehaviour
 
     void TriggerInteraction(Interaction interaction)
     {
-        GameObject obstacleParent = interaction.obstacle.transform.root.gameObject;
-        Animator[] animators = obstacleParent.GetComponentsInChildren<Animator>();
-        foreach(Animator animator in animators)
+        GameObject obstacleParent;
+        if(interaction.obstacle != null)
         {
-            animator.SetTrigger("Activate");
-        }
-        if(obstacleParent.transform.Find("Obstacle") != null)
-        {
-            obstacleParent.transform.Find("Obstacle").gameObject.SetActive(false);
+            obstacleParent = interaction.obstacle.transform.root.gameObject;
+            Animator[] animators = obstacleParent.GetComponentsInChildren<Animator>();
+            foreach(Animator animator in animators)
+            {
+                animator.SetTrigger("Activate");
+            }
+            interaction.obstacle.SetActive(false);
             PlayerPrefs.SetInt(interaction.obstacleName, 0);
         }
+        
         dialogueBox.SetActive(false);
+        if(interaction.newObject != null)
+            interaction.newObject.SetActive(true);
+        
     }
 
 }
