@@ -29,8 +29,15 @@ public class SlimeBoss : Enemy
 
         public override void Attacking()
         {
+            agent.SetDestination(transform.position);
             Vector3 targetPosition = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
             transform.LookAt(targetPosition);
+            if (!hasAttacked)
+            {
+                animator.SetTrigger("Attack");
+                hasAttacked = true;
+                Invoke(nameof(ResetAttack), attackSpeed);
+            }
         }
 
     public override void Die()
