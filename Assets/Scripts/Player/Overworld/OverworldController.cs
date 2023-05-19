@@ -50,6 +50,10 @@ public class OverworldController : MonoBehaviour
         {
             PlayerPrefs.DeleteAll();
         }
+        else if(Input.GetKeyDown("y"))
+        {
+            PlayerPrefs.SetInt("LightningWall",1);
+        }
 
     }
 

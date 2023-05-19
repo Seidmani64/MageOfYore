@@ -21,6 +21,8 @@ public class BossStart : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, player.position) < 1)
         {
+            PlayerPrefs.SetFloat("X start", player.position.x);
+            PlayerPrefs.SetFloat("Z start", player.position.z);
             SceneManager.LoadScene("SlimeBoss");
         }
         if(active)
