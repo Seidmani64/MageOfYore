@@ -16,5 +16,5 @@ EditorBuildSettings:
     guid: 0240b5cf0144e67489ea1696bb56cb8f
   - enabled: 1
     path: Assets/Scenes/SlimeBoss.unity
-    guid: 95d4ddf3cb2cebf40912a39eaf551bdb
+    guid: dccc5dd672a172f48bc44ca0a8cfab60
   m_configObjects: {}

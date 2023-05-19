@@ -8,6 +8,8 @@ TagManager:
   - Bullet
   - Ground
   - Obstacle
+  - Hazard
+  - Wall
   layers:
   - Default
   - TransparentFX

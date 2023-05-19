@@ -53,7 +53,7 @@ public class SlimeBoss : Enemy
         for(float i = -numShots/2; i <= numShots/2; i++)
         {
             Vector3 direction = (targetPosition - transform.position);
-            direction = Quaternion.Euler(0, i * 180/numShots, 0) * direction;
+            direction = Quaternion.Euler(0, i * 140/numShots, 0) * direction;
             GameObject thunderBullet = Instantiate(bulletPrefab, firePos.position, Quaternion.identity);
             thunderBullet.GetComponent<ThunderBullet>().LaunchBullet(direction);
         }
