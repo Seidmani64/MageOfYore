@@ -438,7 +438,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 2115678586}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1149580415}
   m_Lens:
     FieldOfView: 70
     OrthographicSize: 10
@@ -2353,6 +2353,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7419799367767356960, guid: 16aad00a1db63744da92e7328b46c0c3, type: 3}
+      propertyPath: firePos
+      value: 
+      objectReference: {fileID: 2115678586}
+    - target: {fileID: 7419799367767356960, guid: 16aad00a1db63744da92e7328b46c0c3, type: 3}
+      propertyPath: manaBar
+      value: 
+      objectReference: {fileID: 163990049}
+    - target: {fileID: 7419799367767356960, guid: 16aad00a1db63744da92e7328b46c0c3, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1351402159}
+    - target: {fileID: 7419799367767356961, guid: 16aad00a1db63744da92e7328b46c0c3, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1477821401}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16aad00a1db63744da92e7328b46c0c3, type: 3}
 --- !u!1 &889858586
@@ -2789,6 +2805,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1112516221}
   m_CullTransparentMesh: 1
+--- !u!4 &1149580415 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7419799367767356892, guid: 16aad00a1db63744da92e7328b46c0c3, type: 3}
+  m_PrefabInstance: {fileID: 828602374}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1186040553
 GameObject:
   m_ObjectHideFlags: 0
