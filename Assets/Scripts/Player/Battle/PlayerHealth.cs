@@ -38,6 +38,12 @@ public class PlayerHealth : MonoBehaviour, Damage
             Vector3 knockbackDir = transform.position - col.gameObject.transform.position;
             knockback.AddImpact(knockbackDir, 15f);
         }
+        else if(col.gameObject.tag == "Hazard" && currentIFrames <= 0f)
+        {
+            TakeDamage(1);
+            Vector3 knockbackDir = transform.position - col.gameObject.transform.position;
+            knockback.AddImpact(knockbackDir, 10f);
+        }
             
     }
 
@@ -48,6 +54,12 @@ public class PlayerHealth : MonoBehaviour, Damage
             TakeDamage(1);
             Vector3 knockbackDir = transform.position - col.gameObject.transform.position;
             knockback.AddImpact(knockbackDir, 15f);
+        }
+        else if(col.gameObject.tag == "Hazard" && currentIFrames <= 0f)
+        {
+            TakeDamage(1);
+            Vector3 knockbackDir = transform.position - col.gameObject.transform.position;
+            knockback.AddImpact(knockbackDir, 10f);
         }
             
     }

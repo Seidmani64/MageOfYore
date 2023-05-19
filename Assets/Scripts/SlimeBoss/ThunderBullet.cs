@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class ThunderBullet : MonoBehaviour
 {
     [SerializeField] private float force = 20f;
     [SerializeField] private float deathTimer = 3f;
     private Rigidbody rb;
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-        rb.AddForce(Camera.main.transform.forward.normalized * force);
-    }
+
 
     void Update()
     {
@@ -23,8 +18,13 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.tag == "Enemy")
-            GameObject.FindWithTag("Player").GetComponent<PlayerFire>().GainMana();
-        Destroy(gameObject);
+        if(col.gameObject.tag == "Wall")
+            Destroy(gameObject);
+    }
+
+    public void LaunchBullet(Vector3 direction)
+    {
+        rb = GetComponent<Rigidbody>();
+        rb.AddForce(direction.normalized * force);
     }
 }

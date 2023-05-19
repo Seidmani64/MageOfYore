@@ -485,7 +485,7 @@ PrefabInstance:
     - target: {fileID: 3976434839551815401, guid: 1e98b6137d825b54d9e7161a6f84cf70, type: 3}
       propertyPath: enemyPrefab
       value: 
-      objectReference: {fileID: 7864184731674810640, guid: c962fc5590f9da14e9129c4f8ec88f97, type: 3}
+      objectReference: {fileID: 7210601162505058522, guid: c962fc5590f9da14e9129c4f8ec88f97, type: 3}
     - target: {fileID: 3976434839551815402, guid: 1e98b6137d825b54d9e7161a6f84cf70, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -2262,7 +2262,7 @@ GameObject:
   - component: {fileID: 677679773}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2708,7 +2708,7 @@ GameObject:
   - component: {fileID: 890559365}
   m_Layer: 0
   m_Name: Wall (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3573,7 +3573,7 @@ GameObject:
   - component: {fileID: 1289366498}
   m_Layer: 0
   m_Name: Wall (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5637,7 +5637,7 @@ GameObject:
   - component: {fileID: 1961226610}
   m_Layer: 0
   m_Name: Wall (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
