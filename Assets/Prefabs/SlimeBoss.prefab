@@ -296,3 +296,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7835513217079721919, guid: aa4c6c46c2215dd49ab3a7599cb0494b, type: 3}
   firePos: {fileID: 4622776610149447904}
   numShots: 12
+  numBounces: 2
+  walls:
+    serializedVersion: 2
+    m_Bits: 256

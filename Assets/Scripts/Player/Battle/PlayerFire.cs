@@ -47,7 +47,7 @@ public class PlayerFire : MonoBehaviour
             animator.SetBool("CanShoot", false);
         }
 
-        if(canShoot && Input.GetMouseButtonDown(0))
+        if(canShoot && Input.GetMouseButtonDown(0) && currentCharge <= 0)
             Fireball();
         else if(currentCharge >= chargeTime && Input.GetMouseButtonUp(1))
         {

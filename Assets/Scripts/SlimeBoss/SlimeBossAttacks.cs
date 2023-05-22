@@ -8,4 +8,9 @@ public class SlimeBossAttacks : MonoBehaviour
     {
         transform.parent.GetComponent<SlimeBoss>().Shoot();
     }
+
+    public void ThunderCharge()
+    {
+        transform.parent.GetComponent<SlimeBoss>().Charge();
+    }
 }
