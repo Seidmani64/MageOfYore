@@ -17,6 +17,9 @@ public class SlimeBoss : Enemy
     [SerializeField] private LayerMask walls;
     private Vector3 nextObjective = Vector3.zero;
     private bool bouncing = false;
+    private float maxHp;
+    private bool immune = false;
+    private bool ultimateAvailable = true;
 
     void Start()
     {
@@ -24,12 +27,17 @@ public class SlimeBoss : Enemy
         previousSpeed = agent.speed;
         bounces = numBounces + 1;
         player = GameObject.FindWithTag("Player").transform;
+        maxHp = hp;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Charging state is: " + charging);
+        if(hp <= maxHp/2 && ultimateAvailable)
+        {
+            animator.SetTrigger("Attack2");
+            hasAttacked = true;
+        }
         if(charging)
             return;
         recoveryTime += Time.deltaTime;
@@ -51,12 +59,7 @@ public class SlimeBoss : Enemy
         transform.LookAt(targetPosition);
         if (!hasAttacked)
         {
-            int attackNum = Random.Range(0,10);
-            attackNum = 8;
-            if(attackNum < 8)
-                animator.SetTrigger("Attack1");
-            else
-                animator.SetTrigger("Attack2");
+            animator.SetTrigger("Attack1");
             hasAttacked = true;
         }
     }
@@ -78,15 +81,20 @@ public class SlimeBoss : Enemy
 
     public void Charge()
     {
+        ultimateAvailable = false;
         charging = true;
+        immune = true;
         RaycastHit rayHit;
-        Vector3 originPoint = transform.position + new Vector3(0,3,0);
-        Physics.Raycast(originPoint, player.transform.position, out rayHit, Mathf.Infinity, walls);
+        Vector3 originPoint = transform.position;
+        originPoint.y = 0;
+        Vector3 direction = player.transform.position;
+        Physics.Raycast(originPoint, direction.normalized, out rayHit, Mathf.Infinity, walls);
         Vector3 objective = rayHit.point;
-        objective.y = transform.position.y;
         agent.SetDestination(objective);    
-        agent.speed = 26;
-        Vector3 incomingVec = rayHit.point - transform.position;
+        agent.speed = 20;
+        agent.angularSpeed = 200;
+        agent.acceleration = 150;
+        Vector3 incomingVec = rayHit.point - originPoint;
         Vector3 nextTrajectory = Vector3.Reflect(incomingVec, rayHit.normal);
         nextObjective = nextTrajectory - rayHit.point;
         nextObjective.y = transform.position.y;
@@ -108,13 +116,17 @@ public class SlimeBoss : Enemy
         {
             charging = false;
             bouncing = false;
+            immune = false;
             bounces = numBounces;
             agent.SetDestination(player.transform.position);
             agent.speed = previousSpeed;
+            agent.angularSpeed = 120;
+            agent.acceleration = 60;
             nextObjective = Vector3.zero;
             Invoke(nameof(ResetAttack), attackSpeed);
             return;
         }
+        agent.speed += 5;
         RaycastHit newRayHit;
         Vector3 originPoint = transform.position + new Vector3(0,3,0);
         Physics.Raycast(originPoint, nextObjective, out newRayHit, Mathf.Infinity, walls);
@@ -130,7 +142,7 @@ public class SlimeBoss : Enemy
 
     void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.tag == "Bullet")
+        if(col.gameObject.tag == "Bullet" && !immune)
             TakeDamage(1);
         if(charging && col.gameObject.tag == "Wall" && !bouncing)
         {

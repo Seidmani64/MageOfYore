@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406aef2257f12d74eab5f36b5464dfe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 30
+  hp: 2
   agent: {fileID: 5932024603091022036}
   player: {fileID: 0}
   sightRange: 120
@@ -296,7 +296,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7835513217079721919, guid: aa4c6c46c2215dd49ab3a7599cb0494b, type: 3}
   firePos: {fileID: 4622776610149447904}
   numShots: 12
-  numBounces: 2
+  numBounces: 8
   walls:
     serializedVersion: 2
     m_Bits: 256

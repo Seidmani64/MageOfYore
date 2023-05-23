@@ -12,5 +12,6 @@ public class SlimeBossAttacks : MonoBehaviour
     public void ThunderCharge()
     {
         transform.parent.GetComponent<SlimeBoss>().Charge();
+        GetComponent<Animator>().SetBool("HasCharged", true);
     }
 }
