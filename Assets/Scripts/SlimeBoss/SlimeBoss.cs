@@ -104,6 +104,7 @@ public class SlimeBoss : Enemy
     {
         Destroy(gameObject);
         PlayerPrefs.SetInt("LightningWall",0);
+        PlayerPrefs.SetInt("EncountersEnabled", 0);
         PlayerXP.instance.AddXP(5);
         EnemySpawner.instance.numEnemies--;
         EnemySpawner.instance.EnemiesCheck(); 

@@ -13,6 +13,7 @@ public class OverworldController : MonoBehaviour
     [SerializeField] private LayerMask wallLM;
     private float randEncounter = 0f;
     private DialogueManager dialogueManager;
+    private int encountersEnabled;
 
     private int steps = 0;
 
@@ -26,6 +27,7 @@ public class OverworldController : MonoBehaviour
         goal = transform.position;
         randEncounter = 0f;
         steps = 0;
+        encountersEnabled = PlayerPrefs.GetInt("EncountersEnabled",1);
     }
 
     void Update()
@@ -71,7 +73,7 @@ public class OverworldController : MonoBehaviour
         if(hInput != 0 || vInput != 0)
             {
                 randEncounter = Random.Range(0f, 1f);
-                if(randEncounter < (0.01f + steps/200)) 
+                if(randEncounter < (0.01f + steps/200) && encountersEnabled >= 1) 
                 {
                     randEncounter = 0;
                     steps = 0;
