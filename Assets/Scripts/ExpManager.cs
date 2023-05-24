@@ -10,6 +10,7 @@ public class ExpManager : MonoBehaviour
     public static ExpManager instance; 
     public TextMeshProUGUI expUI;
     public TextMeshProUGUI lvlText;
+    public TextMeshProUGUI unlockText;
     [SerializeField] private GameObject HUD;
     [SerializeField] private GameObject LevelUpUI;
     [SerializeField] private HealthBar healthBar;
@@ -17,6 +18,7 @@ public class ExpManager : MonoBehaviour
     [SerializeField] private AudioClip victorySong;
     [SerializeField] private AudioSource audioManager;
     [SerializeField] private GameObject healthUpButton;
+    [SerializeField] private GameObject unlockUI;
     public int exp = 0;
     public int level = 1;
     public bool levellingUp = false;
@@ -47,6 +49,10 @@ public class ExpManager : MonoBehaviour
         HUD.SetActive(false);
         LevelUpUI.SetActive(true);
         lvlText.text = "YOU HAVE REACHED LEVEL " + level.ToString();
+        if(level == 3)
+        {
+            unlockUI.SetActive(true);
+        }
     }
 
     public void HealthUp()
@@ -55,6 +61,7 @@ public class ExpManager : MonoBehaviour
         PlayerPrefs.SetInt("maxHp", maxHp+1);
         PlayerPrefs.SetInt("hp", maxHp+1);
         HUD.SetActive(true);
+        unlockUI.SetActive(false);
         LevelUpUI.SetActive(false);
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
@@ -68,6 +75,7 @@ public class ExpManager : MonoBehaviour
         PlayerPrefs.SetInt("maxMana", maxMana+5);
         PlayerPrefs.SetInt("mana", maxMana+5);
         HUD.SetActive(true);
+        unlockUI.SetActive(false);
         LevelUpUI.SetActive(false);
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;

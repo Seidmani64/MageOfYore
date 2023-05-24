@@ -19,7 +19,7 @@ public class PauseManager : MonoBehaviour
 
     public void MenuCheck()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) && !ExpManager.instance.levellingUp)
         {
             if(paused)
                 ResumeGame();

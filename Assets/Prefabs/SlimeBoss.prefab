@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406aef2257f12d74eab5f36b5464dfe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 2
+  hp: 30
   agent: {fileID: 5932024603091022036}
   player: {fileID: 0}
   sightRange: 120
