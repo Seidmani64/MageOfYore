@@ -11,6 +11,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private GameObject resumeButton;
     private GameObject player;
     public bool paused = false;
+    [SerializeField] private GameObject cinemachineCam;
 
     void Awake()
     {
@@ -31,6 +32,8 @@ public class PauseManager : MonoBehaviour
     public void PauseGame()
     {
         var eventSystem = EventSystem.current;  
+        if(cinemachineCam != null)
+                cinemachineCam.SetActive(false);
         eventSystem.SetSelectedGameObject(resumeButton, new BaseEventData(eventSystem));
         Cursor.lockState = CursorLockMode.Confined;
         paused = true;
@@ -40,6 +43,8 @@ public class PauseManager : MonoBehaviour
 
     public void ResumeGame()
     {
+        if(cinemachineCam != null)
+            cinemachineCam.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
         paused = false;
         pauseUI.SetActive(false);

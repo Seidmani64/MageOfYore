@@ -19,6 +19,7 @@ public class ExpManager : MonoBehaviour
     [SerializeField] private AudioSource audioManager;
     [SerializeField] private GameObject healthUpButton;
     [SerializeField] private GameObject unlockUI;
+    private GameObject cinemachineCamera;
     public int exp = 0;
     public int level = 1;
     public bool levellingUp = false;
@@ -28,6 +29,7 @@ public class ExpManager : MonoBehaviour
         exp = PlayerPrefs.GetInt("exp", 0);   
         level = (int)Mathf.Floor((exp+5)/5); 
         expUI.text = "Level " + level.ToString();
+        cinemachineCamera = GameObject.FindWithTag("Cinemachine");
     }
 
     void Awake()
@@ -41,6 +43,7 @@ public class ExpManager : MonoBehaviour
         eventSystem.SetSelectedGameObject(healthUpButton, new BaseEventData(eventSystem));
         audioManager.clip = victorySong;
         audioManager.Play();
+        cinemachineCamera.SetActive(false);
         Cursor.lockState = CursorLockMode.Confined;
         exp = PlayerPrefs.GetInt("exp", 0);   
         level = (int)Mathf.Floor((exp+5)/5); 
@@ -63,6 +66,7 @@ public class ExpManager : MonoBehaviour
         HUD.SetActive(true);
         unlockUI.SetActive(false);
         LevelUpUI.SetActive(false);
+        cinemachineCamera.SetActive(true);
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         levellingUp = false;
@@ -77,6 +81,7 @@ public class ExpManager : MonoBehaviour
         HUD.SetActive(true);
         unlockUI.SetActive(false);
         LevelUpUI.SetActive(false);
+        cinemachineCamera.SetActive(true);
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         levellingUp = false;
