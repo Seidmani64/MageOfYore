@@ -14,6 +14,7 @@ public class OverworldController : MonoBehaviour
     private float randEncounter = 0f;
     private DialogueManager dialogueManager;
     private int encountersEnabled;
+    [SerializeField] private float distance = 1f;
 
     private int steps = 0;
 
@@ -21,8 +22,8 @@ public class OverworldController : MonoBehaviour
     void Start()
     {
         dialogueManager = FindObjectOfType<DialogueManager>();
-        float xInitialPos = PlayerPrefs.GetFloat("X start", 0.5f);
-        float zInitialPos = PlayerPrefs.GetFloat("Z start", 0.5f);
+        float xInitialPos = PlayerPrefs.GetFloat("X start", 1f);
+        float zInitialPos = PlayerPrefs.GetFloat("Z start", 1f);
         transform.position = new Vector3(xInitialPos, 0, zInitialPos);
         goal = transform.position;
         randEncounter = 0f;
@@ -92,11 +93,11 @@ public class OverworldController : MonoBehaviour
             tempVect  = new Vector3(0,0,vInput);
 
         
-        goal = transform.position + tempVect.normalized;
+        goal = transform.position + tempVect.normalized * distance;
         
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, tempVect.normalized, out hit, 1f, wallLM))
+        if (Physics.Raycast(transform.position, tempVect.normalized, out hit, distance, wallLM))
         {
             transform.LookAt(goal);
             goal = transform.position;
@@ -106,7 +107,7 @@ public class OverworldController : MonoBehaviour
     private void Interact()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 1f, wallLM))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, distance, wallLM))
         {
             DialogueTrigger interactable = hit.collider.gameObject.GetComponent<DialogueTrigger>();
             if(interactable != null)

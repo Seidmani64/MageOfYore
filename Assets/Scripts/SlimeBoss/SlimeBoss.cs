@@ -87,7 +87,7 @@ public class SlimeBoss : Enemy
         RaycastHit rayHit;
         Vector3 originPoint = transform.position;
         originPoint.y = 0;
-        Vector3 direction = player.transform.position;
+        Vector3 direction = new Vector3(Random.Range(0,2)*2-1,0,Random.Range(0,2)*2-1);
         Physics.Raycast(originPoint, direction.normalized, out rayHit, Mathf.Infinity, walls);
         Vector3 objective = rayHit.point;
         agent.SetDestination(objective);    
