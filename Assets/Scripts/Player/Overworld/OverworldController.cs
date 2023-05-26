@@ -15,6 +15,7 @@ public class OverworldController : MonoBehaviour
     private DialogueManager dialogueManager;
     private int encountersEnabled;
     [SerializeField] private float distance = 1f;
+    [SerializeField] private Animator animator;
 
     private int steps = 0;
 
@@ -62,12 +63,14 @@ public class OverworldController : MonoBehaviour
 
     private void MoveTowardsGoal()
     {
+        animator.SetBool("Walking",true);
         transform.position = Vector3.MoveTowards(transform.position, goal, speed * Time.deltaTime);
         transform.LookAt(goal);
     }
 
     private void SetNewGoal()
     {
+        animator.SetBool("Walking",false);
         hInput = Input.GetAxisRaw("Horizontal");
         vInput = Input.GetAxisRaw("Vertical");
 

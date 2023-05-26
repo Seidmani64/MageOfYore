@@ -79,13 +79,13 @@ Material:
     - _Parallax: 0.02
     - _RippleDensity: 7
     - _RippleSlimness: 5
-    - _RippleSpeed: 1
+    - _RippleSpeed: 10
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Speed: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _WaveSpeed: 0.1
+    - _WaveSpeed: 0.05
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.4784314, g: 0.7098039, b: 0.8705883, a: 1}
