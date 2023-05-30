@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 42e686adcb132f845bb31dd01acf30bb, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 8ab4d78f345d413458c650451b57f408, type: 2}
 --- !u!1 &35721858
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,7 +1256,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 2115678586}
+  m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1149580415}
   m_Lens:
     FieldOfView: 70
@@ -7890,7 +7890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbe0de50bf6930c41a7094d87b7eb3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 905543766812879897, guid: 0f466c9070baf8f49939c3d7e2e39d6a, type: 3}
+  enemyPrefab: {fileID: 3836142332853936129, guid: 0f466c9070baf8f49939c3d7e2e39d6a, type: 3}
   spawnRange: 20
   numEnemies: 1
   isBoss: 0

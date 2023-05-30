@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour, Damage
     public float recoveryTime = 0f;
     [SerializeField] public float maxRecoveryTime = 0.5f;
     public static int numEnemies = 0;
-    [SerializeField] private FlashEffect flash;
+    [SerializeField] public FlashEffect flash;
 
     void Start()
     {
@@ -31,8 +31,6 @@ public class Enemy : MonoBehaviour, Damage
     void Update()
     {
         recoveryTime += Time.deltaTime;
-        if(recoveryTime >= maxRecoveryTime)
-            animator.SetBool("Hurt", false);
         playerInSights = Physics.CheckSphere(transform.position, sightRange, isPlayer);
         playerInRange = Physics.CheckSphere(transform.position, attackRange, isPlayer);
 
@@ -71,10 +69,9 @@ public class Enemy : MonoBehaviour, Damage
             TakeDamage(1);
     }
 
-    public void TakeDamage(int amount)
+    public virtual void TakeDamage(int amount)
     {
         flash.Flash();
-        animator.SetBool("Hurt", true);
         recoveryTime = 0f;
         hp -= amount;
         if(hp <= 0)
