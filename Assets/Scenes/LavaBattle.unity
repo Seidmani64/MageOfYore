@@ -4273,6 +4273,14 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1477821401}
+    - target: {fileID: 7419799367767356963, guid: 16aad00a1db63744da92e7328b46c0c3, type: 3}
+      propertyPath: tapWindow
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7419799367767356963, guid: 16aad00a1db63744da92e7328b46c0c3, type: 3}
+      propertyPath: dashDistance
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16aad00a1db63744da92e7328b46c0c3, type: 3}
 --- !u!1 &845542497
